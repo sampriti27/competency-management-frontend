@@ -1,66 +1,25 @@
-import React from "react";
-import {
-  Landing,
-  Error,
-  SkillList,
-  Register1,
-  ProtectedRoute,
-  Login1,
-} from "./pages";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import "./assets/css/app.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Stats,
-  AddJob,
-  SharedLayout,
-  AllJobs,
-  Dashboard,
-  EmploeeList,
-} from "./pages/dashboard";
-import ProfilePage from "./pages/profilePage/index";
+import logo from './logo.svg';
+import './App.css';
 
-const App = () => {
+function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <SharedLayout />
-            </ProtectedRoute>
-          }
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          <Route index element={<Stats />} />
-          <Route path="add-job" element={<AddJob />} />
-          <Route path="all-jobs" element={<AllJobs />} />
-          {/* <Route path='employee-list' element={<EmploeeList />} /> */}
-        </Route>
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        >
-          <Route index element={<Stats />} />
-          <Route path="all-projects" element={<AddJob />} />
-          <Route path="add-skill" element={<AllJobs />} />
-          <Route path="view-skill" element={<SkillList />} />
-          <Route path="profile" element={<ProfilePage />} />
-        </Route>
-        <Route path="landing" element={<Landing />}></Route>
-        <Route path="login" element={<Login1 />}></Route>
-        <Route path="register" element={<Register1 />}></Route>
-        <Route path="*" element={<Error />}></Route>
-      </Routes>
-      <ToastContainer position="top-center" />
-    </BrowserRouter>
+          Learn React
+        </a>
+      </header>
+    </div>
   );
-};
+}
 
 export default App;
