@@ -20,7 +20,7 @@ const Landing = () => {
             crucifix heirloom meggings bicycle rights.
           </p>
           <Link to='/register' className='btn btn-hero'>
-            Login
+            Login | Register
           </Link>
         </div>
         <img src={main} alt='job hunt' className='img main-img' />

@@ -1,45 +1,103 @@
-import React, { useState } from 'react';
-import { Logo, FormRow } from '../components';
-import Wrapper from '../assets/wrappers/RegisterPage'
+
+import React, { useEffect, useState } from 'react';
+import { FormRow, FormRowSelect} from '../components';
+import Wrapper from '../assets/wrappers/RegisterPage';
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser, registerUser } from '../features/user/userSlice';
+import { useNavigate } from 'react-router-dom';
+import { handlesChange } from '../features/user/userSlice';
 
 const initialState = {
-  name: '',
+  name:'',
   email: '',
   password: '',
-  isManager: true,
+  isMember: false,
 };
 
 function Register() {
-  const [values, setValues] = useState(initialState);
+  const { isManager, managerOptions, usertype} = useSelector((store) => store.user);
+
+  const [values, setValues] = useState(initialState)
+
+  const {user, isLoading} = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+
+
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
-    console.log(e.target);
+    const name = e.target.name
+    const value = e.target.value
+    setValues({...values,[name]:value})
   }
+  const handleRegisterInput = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    console.log(name+" "+value);
+    dispatch(handlesChange({ name, value }));
+  };
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target);
+    const {name, email, password, isMember, isManager} = values
+    if(!email || !password || (!isMember && !name)){
+      toast.error("Please fill out all fields");
+      return;
+    }
+    if(isMember){
+      dispatch(loginUser({email:email, password:password , isManager}));
+      return;
+    }
+    dispatch(registerUser({name, email, password, usertype}));
+    
   }
-  const toggleManager = () => {
-    setValues({...values, isManager: !values.isManager});
+  const toggleMember =() =>{
+    setValues({...values, isMember:!values.isMember});
   }
-  return (
-    <Wrapper className='full-page'>
-      <form className='form' onSubmit={onSubmit}>
-      <div className='logopos'>
-        <Logo className='logosiz'/>
-      </div>
-        <h3>{values.isManager ? 'Manager Login' : 'Employee Login'}</h3>
-        <FormRow type="email" name="email" value={values.email} handleChange={handleChange}/>
-        <FormRow type="password" name="password" value={values.password} handleChange={handleChange}/>
-        <button type='submit' className='btn btn-block'>Login</button>
-        <p>
-          {values.isManager ? 'Are you an Employee?' : 'Are you a Project Manager?'}
-          <button type='button' onClick={toggleManager} className='manager-btn'>
-            {values.isManager ? 'Employee Login':'Manager login'}
+
+  useEffect(()=>{
+    if(user){
+      console.log(user)
+      setTimeout(()=>{
+           navigate('/');
+        },2000);
+    }
+  });
+
+  return <Wrapper className='full-page'>
+    <form className='form' onSubmit={onSubmit}>
+      <h3>{values.isMember ? 'Login' : 'Register'}</h3>
+      {!values.isMember && (
+          <FormRow
+            type='text'
+            name='name'
+            value={values.name}
+            handleChange={handleChange}
+          />
+        )}
+      <FormRow type='email' name='email' value={values.email} handleChange={handleChange}></FormRow>
+      <FormRow type='password' name='password' value={values.password} handleChange={handleChange}></FormRow>
+      {values.isMember && (
+        <div>
+        <label htmlFor='selectuser' className='selectusertype'>Choose User Type:</label>
+        <FormRowSelect
+            name='isManager'
+            labelText='type'
+            value={isManager}
+            handleChange={handleRegisterInput}
+            list={managerOptions}
+          />
+        </div>
+      )}
+      <button type='submit' className='btn btn-block' disabled={isLoading}>{isLoading ? 'loading...' : 'submit'}</button>
+      <p>
+          {values.isMember ? 'Not a member yet?' : 'Already a member?'}
+          <button type='button' onClick={toggleMember} className='manager-btn'>
+            {values.isMember ? 'Register' : 'Login'}
           </button>
         </p>
-      </form>
-    </Wrapper>
-  )
+    </form>
+  </Wrapper>
 }
 
-export default Register
+export default Register;

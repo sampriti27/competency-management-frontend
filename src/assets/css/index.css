@@ -149,7 +149,7 @@ ul {
 .btn {
   cursor: pointer;
   color: var(--white);
-  background: var(--primary-500);
+  background: var(--purple);
   border: transparent;
   border-radius: var(--borderRadius);
   letter-spacing: var(--letterSpacing);
@@ -159,8 +159,19 @@ ul {
   text-transform: capitalize;
   display: inline-block;
 }
+.pur{
+  background: var(--purple);
+  color: var(--white);
+}
+.ple{
+  background: var(--white);
+  border: 1px solid var(--purple);
+  color: var(--purple);
+}
 .btn:hover {
-  background: var(--primary-700);
+  border: 2px solid var(--purple);
+  background: var(--white);
+  color: var(--purple);
   box-shadow: var(--shadow-3);
 }
 .btn-hipster {
@@ -324,4 +335,19 @@ ul {
 
 .Toastify__toast {
   text-transform: capitalize;
+}
+
+#selectuser{
+  height: 35px;
+  margin-bottom: 1rem;
+  width: 100%;
+  border-radius: var(--borderRadius);
+  background: var(--backgroundColor);
+  border: 1px solid var(--grey-200);
+}
+.selectusertype{
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5rem;
+
 }

@@ -29,6 +29,7 @@ const Wrapper = styled.main`
   }
   .btn-hero{
     position: relative;
+    color: white;
     background-color: var(--purple);
   }
 
