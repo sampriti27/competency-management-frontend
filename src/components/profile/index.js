@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 // import axios from "axios"; // Use axios or any other HTTP client library
-import Styles from "./styles/Profile.css";
-import "./assets/css/profile.css";
-import profile from "./assets/images/profile1.png";
-import Skeleton from "./components/Skeleton/index";
+// import Styles from "./styles/Profile.css";
+import "../../assets/css/profile.css";
+import profile from "../../assets/images/profile1.png";
+import Skeleton from "../skeleton/index";
 const ProfilePage = () => {
   const [user, setUser] = useState("vk");
   const [isEditing, setIsEditing] = useState(false);
@@ -63,7 +63,10 @@ const ProfilePage = () => {
   return (
     <div className="container">
       <div className="flex justify-center items-center h-screen">
-        <div className="glass" style={{ width: "100%", paddingTop: "3em" }}>
+        <div
+          className="glass"
+          style={{ width: "100%", height: "100vh", paddingTop: "3em" }}
+        >
           {/* <img src={user.avatar} alt="Profile Avatar" /> */}
           <div className="profile-edit">
             {!isEditing && (

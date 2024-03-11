@@ -20,7 +20,7 @@ import {
   Dashboard,
   EmploeeList,
 } from "./pages/dashboard";
-import Profile from "./pages/profile/profile";
+import ProfilePage from "./pages/profilePage/index";
 
 const App = () => {
   return (
@@ -51,7 +51,7 @@ const App = () => {
           <Route path="all-projects" element={<AddJob />} />
           <Route path="add-skill" element={<AllJobs />} />
           <Route path="view-skill" element={<SkillList />} />
-          <Route path="profile" element={<Profile />} />
+          <Route path="profile" element={<ProfilePage />} />
         </Route>
         <Route path="landing" element={<Landing />}></Route>
         <Route path="login" element={<Login1 />}></Route>
