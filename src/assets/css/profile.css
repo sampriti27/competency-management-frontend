@@ -1,0 +1,91 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 960px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px #4747470b;
+  backdrop-filter: blur(7.1px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-width: 4px;
+  border-color: #f9f9f9;
+  border-style: solid;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  height: 75%;
+  width: 30%;
+  border-radius: 1.5rem; /* Rounded corners */
+  padding-top: 3rem;
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+  min-width: max-content;
+  /* @apply border-4 border-gray-50 shrink-0 h-3/4 w-[30%] rounded-3xl py-20 px-7 min-w-max; */
+}
+
+.img-profile {
+  width: 10rem;
+  cursor: pointer;
+}
+
+.profile-align {
+  display: flex;
+  flex-direction: row;
+  gap: 4rem;
+}
+
+.profile-edit {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+}
+
+.profile-edit-btn {
+  border-radius: 15px;
+  width: 100px;
+  height: 40px;
+  border: none;
+  color: white;
+  background-color: #6c63ff;
+}
+
+.profile-editpage {
+  font-size: 20px;
+  width: 100%;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.formInput {
+  width: 500px;
+  height: 30px;
+  border: none;
+  border-radius: 15px;
+  background-color: #f9f9f9;
+  margin-bottom: 12px;
+}
+
+.formsLabel {
+  margin-right: 10px;
+}
+
+.formBtn {
+  width: 60px;
+  height: 30px;
+  border: none;
+  background-color: #6c63ff;
+  margin-right: 20px;
+  color: white;
+  border-radius: 10px;
+}
+/* .profile-editpage input {
+  width: 100%;
+} */
+.profile-bio {
+}

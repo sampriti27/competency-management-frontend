@@ -1,0 +1,40 @@
+.skeleton-container {
+  max-width: 600px; /* Adjust as needed */
+  margin: 20px auto;
+}
+
+.skeleton {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.skeleton-avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #ddd;
+}
+
+.skeleton-text {
+  height: 20px;
+  margin-top: 10px;
+  background-color: #ddd;
+}
+
+/* Add animations for better visual effect */
+@keyframes skeleton-loading {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.skeleton-text {
+  animation: skeleton-loading 1.5s ease infinite;
+}
