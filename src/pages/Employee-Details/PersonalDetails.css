@@ -1,4 +1,4 @@
-p{
+.p{
   color:rgb(61, 61, 61);
   border-radius: 3px;
   border-color: black;
@@ -9,15 +9,15 @@ p{
   padding-right: 20px;
 }
 
-h3{
+.perDetails,.headEmp,.workDet{
   color: rgb(0, 0, 0);
 }
 
-h2,h3{
+.head,.perDetails,.headEmp,.workDet{
   margin: 0px;
 }
 
-header{
+.headerEmp{
   background-color: #6c63ff;
   color: white;
   margin: 0px;
@@ -36,7 +36,7 @@ header{
   margin-left: 20px;
 }
 
-img{
+.image{
   border: 2px solid #bcccdc;
   border-radius: 100px;
   margin: 20px;
