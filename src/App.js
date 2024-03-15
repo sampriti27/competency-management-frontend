@@ -23,7 +23,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import './assets/css/app.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Stats,AddJob, SharedLayout, AllJobs, Dashboard, EmploeeList} from './pages/dashboard';
-import ProjectList from './pages/project/projectList' 
+import ProjectList from './pages/project/projectList';
+import PersonalDetails from '.pages/Employee-Details/PersonalDetails';
 
 
 const App = () => {
@@ -59,6 +60,7 @@ const App = () => {
       <Route path="landing" element={<Landing/>}></Route>
       <Route path="login" element={<Login1/>}></Route>
       <Route path="register" element={<Register1/>}></Route>
+      <Route path="employee-details" element={<PersonalDetails/>}></Route>
       <Route path="*" element={<Error/>}></Route>
      </Routes>
      <ToastContainer position='top-center'/>
