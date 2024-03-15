@@ -30,66 +30,66 @@ function PersonalDetails(){
     }
     return(
         <section>
-            <header>
-                <h2>CMS</h2>
+            <header className="headerEmp">
+                <h2 className="head">CMS</h2>
                 <h3 className='headEmp'>Employee Details</h3>
             </header>
             <div className="container">
-            <img src={profile} alt='Profile'/>
+            <img className="image" src={profile} alt='Profile'/>
             <div className="doublecontainer"> 
-                <h3>Personal Details</h3>
+                <h3 className="perDetails">Personal Details</h3>
                 <div className="id">
-                    <p>
+                    <p className="p">
                         <strong>Employee ID</strong><br/>
                         {data.id}
                     </p>
                 </div>
                 <div className="fname">
-                    <p>
+                    <p className="p">
                         <strong>First Name</strong><br/>
                         {data.fname}
                     </p>
                 </div>
                 <div className="lname">
-                    <p>
+                    <p className="p">
                         <strong>Last Name</strong><br/>
                         {data.lname}
                     </p>
                 </div>
                 <div className="gender"> 
-                    <p>
+                    <p className="p">
                         <strong>Gender</strong><br/>
                         {data.gender}
                     </p>
                 </div>
                 <div className="dob">
-                    <p>
+                    <p className="p">
                         <strong>DOB</strong><br/>
                         {data.dob}
                     </p>
                 </div>
                 <div className="contact">
-                    <p>
+                    <p className="p">
                         <strong>Contact</strong><br/>
                         {data.contact}
                     </p>
                 </div>
                 <div className="email">
-                    <p>
+                    <p className="p">
                         <strong>Email Address</strong><br/>
                         {data.email}
                     </p>
                 </div>
 
-                <h3>Work Data</h3>
+                <h3 className="workDet">Work Data</h3>
             <div className="skills">
-                <p>
+                <p className="p">
                     <strong>Skills</strong><br/>
                     {data1.Skills}
                 </p>
             </div>
             <div className="projects">
-                <p>
+                <p className="p">
                     <strong>Projects</strong><br/>
                     {data1.Projects}
                 </p>
