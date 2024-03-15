@@ -1,4 +1,21 @@
-import React from 'react'
+// import React from 'react'
+// <<<<<<< HEAD
+// // eslint-disable-next-line
+// import { Route, Router, RouterProvider, createBrowserRouter } from 'react-router-dom'
+// import SkillList from './pages/skill/skillList'
+// import ProjectList from './pages/project/projectList'
+
+// const router = createBrowserRouter([
+//   {
+//     path: "/skill",
+//     element:<SkillList/>
+//   },
+//   {
+//     path: "/project",
+//     element:<ProjectList/>
+//   }
+// ])
+
 import { Landing, Error, SkillList, Register1, ProtectedRoute, Login1} from "./pages";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
@@ -6,6 +23,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './assets/css/app.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Stats,AddJob, SharedLayout, AllJobs, Dashboard, EmploeeList} from './pages/dashboard';
+import ProjectList from './pages/project/projectList' 
 
 
 const App = () => {
@@ -34,8 +52,8 @@ const App = () => {
           }
         >
           <Route index element={<Stats />} />
-          <Route path='all-projects' element={<AddJob />} />
-          <Route path='add-skill' element={<AllJobs />} />
+          <Route path='all-projects' element={<ProjectList />} />
+          {/* <Route path='add-skill' element={<AllJobs />} /> */}
           <Route path='view-skill' element={<SkillList />} />
         </Route>
       <Route path="landing" element={<Landing/>}></Route>
