@@ -15,7 +15,7 @@ const SkillList = () => {
     bgcolor: 'background.paper',
     boxShadow: 24,
     p: 4,
-    border: '2px solid #0369a1', // Border color
+    border: '2px solid rgb(108 99 255)', // Border color
     borderRadius: '8px', // Border radius
   };
 
@@ -30,7 +30,7 @@ const SkillList = () => {
   };
 
   const buttonStyle = {
-    backgroundColor: '#0369a1', // Background color for button
+    backgroundColor: 'rgb(108 99 255)', // Background color for button
     color: 'white',
     border: 'none',
     borderRadius: '4px',
@@ -137,7 +137,12 @@ console.log("999999",file)
     if(isupdate){
       updateSkill(formData?.id,formData).then((res)=>{
           console.log(res)})
-
+          getSkillList(1).then((response)=>{
+            console.log(response)
+            if(response)
+        
+            setData(response.data)
+           })
     }
     else{
     const skilldata = formData;
@@ -146,6 +151,12 @@ console.log("999999",file)
     skilldata.is_cert = (skilldata.is_cert === "true");
     createSkill(formData).then((res)=>{
       console.log(res)
+      getSkillList(1).then((response)=>{
+        console.log(response)
+        if(response)
+    
+        setData(response.data)
+       })
     })
   }
     // Clear form fields
@@ -154,6 +165,12 @@ console.log("999999",file)
       up_certificate: null,
       skill_level: "",
     });
+    getSkillList(1).then((response)=>{
+      console.log(response)
+      if(response)
+  
+      setData(response.data)
+     })
     handleClose(); // Close the modal
   };
   const handleDeleteConfirmation = (id) => {
@@ -181,7 +198,7 @@ console.log("999999",file)
         <div className="px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
           <div className="m-4 flex justify-end">
             <button
-              className="text-white bg-sky-700 rounded-lg px-7 py-3 text-base border-none cursor-pointer hover:bg-sky-950 mb-4 sm:mb-6"
+              className="text-white bg-indigo-500 rounded-lg px-3 py-2 text-base border-none cursor-pointer hover:bg-indigo-950 mb-4 sm:mb-6"
               onClick={handleOpen}
             >
               ADD NEW
@@ -207,10 +224,10 @@ console.log("999999",file)
                       Approval Status: {item.approval_status}
                     </p>
                     <div className="absolute bottom-4 right-4 space-x-2">
-                      <button className="text-white bg-sky-700 rounded px-3 py-1 hover:bg-sky-950"   onClick={()=>updateModal(item)}>
+                      <button className="text-white bg-indigo-500 rounded px-3 py-1 hover:bg-indigo-950"   onClick={()=>updateModal(item)}>
                         Update 
                       </button>
-                      <button className="text-white bg-sky-700 rounded px-3 py-1 hover:bg-sky-950" onClick={() => handleDeleteConfirmation(item.id)}>
+                      <button className="text-white bg-pink-500 rounded px-3 py-1 hover:bg-rose-950" onClick={() => handleDeleteConfirmation(item.id)}>
                         Delete
                       </button>
                     </div>
