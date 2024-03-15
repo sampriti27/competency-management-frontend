@@ -8,7 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const initialState = {
-  name:'',
+  fname:'',
+  lname:'',
   email: '',
   password: '',
   phone: '',
@@ -31,13 +32,13 @@ function Register1() {
   }
   const onSubmit = (e) => {
     e.preventDefault();
-    const {name, email, password, phone} = values
-    if(!email || !password || !name || !phone){
+    const {fname, lname, email, password, phone} = values
+    if(!email || !password || !fname || !phone || !lname){
       toast.error("Please fill out all fields");
       return;
     }
     const role = 'Employee';
-    dispatch(registerUser({name, email, password, phone, role}));
+    dispatch(registerUser({fname, lname, email, password, phone, role}));
     setTimeout(()=>{
         navigate('/login');
      },2000);
@@ -49,8 +50,16 @@ function Register1() {
       <h3>Register</h3>
           <FormRow
             type='text'
-            name='name'
-            value={values.name}
+            name='fname'
+            labelText="First Name"
+            value={values.fname}
+            handleChange={handleChange}
+          />
+          <FormRow
+            type='text'
+            name='lname'
+            labelText="Last Name"
+            value={values.lname}
             handleChange={handleChange}
           />
       <FormRow type='email' name='email' value={values.email} handleChange={handleChange}></FormRow>
