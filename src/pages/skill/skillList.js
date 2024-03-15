@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import StaticData from "./StaticData";
 import { Box, Modal } from "@mui/material";
 import DeleteConfirmation from "./DeleteConfirmation";
+import { createSkill, deleteSkill, getSkillList, updateSkill} from "./SkillApi";
 
 
 const SkillList = () => {
@@ -47,31 +48,84 @@ const SkillList = () => {
   // eslint-disable-next-line
   const [skillToDelete, setSkillToDelete] = useState(null);
 
+  const [isupdate, setisupdate] = React.useState(false);
+
+
+  useEffect(()=>{
+
+   getSkillList(1).then((response)=>{
+    console.log(response)
+    if(response)
+
+    setData(response.data)
+   })
+  },[])
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const updateModal = (data) =>{
+console.log(data)
+setisupdate(true)
+
+
+
+
+setFormData((prevState) => ({
+  ...prevState,
+ ...data
+}));
+handleOpen()
+  }
   // State for form data
   const [formData, setFormData] = useState({
-    name: "",
-    certificate: null,
-    rating: "",
+    up_certificate:"",
   });
 
   // Handle form field changes
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const name = e.target.value;
+    console.log(formData)
     setFormData((prevState) => ({
       ...prevState,
-      [name]: name === 'rating' ? Math.max(0, Math.min(5, value)) : value, // Ensuring rating is between 0 and 5
+      skill_name: name
     }));
   };
-
+  const handleChangePn = (e) => {
+    const name = e.target.value;
+    setFormData((prevState) => ({
+      ...prevState,
+      prj_name: name
+    }));
+  };
+  const handleChangePd = (e) => {
+    const name = e.target.value;
+    setFormData((prevState) => ({
+      ...prevState,
+      prj_desc: name
+    }));
+  };
+  const handleChangeCert = (e) => {
+    const certificateAvailable = e.target.value;
+    setFormData((prevState) => ({
+      ...prevState,
+      is_cert: certificateAvailable
+    }));
+  };
+  const handleChangePrg = (e) => {
+    const rating = e.target.value;
+    setFormData((prevState) => ({
+      ...prevState,
+      skill_level: rating
+    }));
+  };
   // Handle file upload
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+console.log("999999",file)
     setFormData((prevState) => ({
       ...prevState,
-      certificate: file,
+      up_certificate: file?.name,
     }));
   };
 
@@ -80,11 +134,25 @@ const SkillList = () => {
     e.preventDefault();
     // Add form data to your data array or handle it as needed
     console.log(formData);
+    if(isupdate){
+      updateSkill(formData?.id,formData).then((res)=>{
+          console.log(res)})
+
+    }
+    else{
+    const skilldata = formData;
+    skilldata.approval_status = 'pending';
+    skilldata.employee_id = 1;
+    skilldata.is_cert = (skilldata.is_cert === "true");
+    createSkill(formData).then((res)=>{
+      console.log(res)
+    })
+  }
     // Clear form fields
     setFormData({
-      name: "",
-      certificate: null,
-      rating: "",
+      skill_name: "",
+      up_certificate: null,
+      skill_level: "",
     });
     handleClose(); // Close the modal
   };
@@ -95,6 +163,10 @@ const SkillList = () => {
 
   const handleDelete = () => {
     setData(data.filter(item => item.id !== skillToDelete));
+    deleteSkill(skillToDelete)
+    // deleteSkill(skillToDelete).then((response)=>{
+      
+    // })
     setDeleteConfirmation(false);
   };
 
@@ -128,15 +200,15 @@ const SkillList = () => {
                     style={{ width: "280px", height: "200px" }}
                   >
                     <h3 className="text-lg font-semibold mb-2">
-                      {item.skill}
+                      {item.skill_name}
                     </h3>
-                    <p className="text-gray-900 mb-2">Skill level: {item.level}</p>
+                    <p className="text-gray-900 mb-2">Skill level: {item.skill_level}</p>
                     <p className="text-gray-900">
-                      Approval Status: {item.approval}
+                      Approval Status: {item.approval_status}
                     </p>
                     <div className="absolute bottom-4 right-4 space-x-2">
-                      <button className="text-white bg-sky-700 rounded px-3 py-1 hover:bg-sky-950">
-                        Update
+                      <button className="text-white bg-sky-700 rounded px-3 py-1 hover:bg-sky-950"   onClick={()=>updateModal(item)}>
+                        Update 
                       </button>
                       <button className="text-white bg-sky-700 rounded px-3 py-1 hover:bg-sky-950" onClick={() => handleDeleteConfirmation(item.id)}>
                         Delete
@@ -153,7 +225,7 @@ const SkillList = () => {
           </div>
         </div>
 
-        <Modal
+   <Modal
   open={open}
   onClose={handleClose}
   aria-labelledby="modal-modal-title"
@@ -167,8 +239,8 @@ const SkillList = () => {
         <input
           type="text"
           id="name"
-          name="name"
-          value={formData.name}
+          name="skill_name"
+          value={formData.skill_name}
           onChange={handleChange}
           required
           style={inputStyle}
@@ -178,52 +250,53 @@ const SkillList = () => {
         <label htmlFor="certificateAvailable">Certificate available:</label>
         <select
           id="certificateAvailable"
-          name="certificateAvailable"
-          value={formData.certificateAvailable}
-          onChange={handleChange}
+          name="is_cert"
+          value={formData.is_cert}
+          onChange={handleChangeCert}
           required
           style={inputStyle}
         >
           <option value="">Select</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
+          <option value={true}>Yes</option>
+          <option value={false}>No</option>
         </select>
       </div>
-      {formData.certificateAvailable === 'yes' && (
+      {formData.is_cert === "true" && (
         <div>
           <label htmlFor="certificate">Certificate:</label>
           <input
             type="file"
             id="certificate"
-            name="certificate"
+            name="up_certificate"
+            // value={formData.up_certificate}
             onChange={handleFileChange}
             required
             style={inputStyle}
           />
         </div>
       )}
-      {formData.certificateAvailable === 'no' && (
+      {formData.is_cert === "false"  && (
         <div>
           <label htmlFor="projectName">Project Name:</label>
           <input
             type="text"
             id="projectName"
-            name="projectName"
-            value={formData.projectName}
-            onChange={handleChange}
+            name="prj_name"
+            value={formData.prj_name}
+            onChange={handleChangePn}
             required
             style={inputStyle}
           />
         </div>
       )}
-      {formData.certificateAvailable === 'no' && (
+      {formData.is_cert === "false"  && (
         <div>
           <label htmlFor="projectDescription">Project Description:</label>
           <textarea
             id="projectDescription"
-            name="projectDescription"
-            value={formData.projectDescription}
-            onChange={handleChange}
+            name="prj_desc"
+            value={formData.prj_desc}
+            onChange={handleChangePd}
             required
             style={inputStyle}
           />
@@ -233,16 +306,16 @@ const SkillList = () => {
         <label htmlFor="rating">Skill level:</label>
         <select
           id="rating"
-          name="rating"
-          value={formData.rating}
-          onChange={handleChange}
+          name="skill_level"
+          value={formData.skill_level}
+          onChange={handleChangePrg}
           required
           style={inputStyle}
         >
           <option value="">Select</option>
-          <option value="beginner">Beginner</option>
-          <option value="intermediate">Intermediate</option>
-          <option value="advanced">Advanced</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
         </select>
       </div>
       <button type="submit" style={buttonStyle}>Add</button>

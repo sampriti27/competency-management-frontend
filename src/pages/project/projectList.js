@@ -12,9 +12,9 @@ const ProjectList = () => {
   const [rejecteddatas, setRejectedDatas] = useState(ApData);
 
   useEffect(() => {
-    const filteredApproved = datas?.filter((item) => item.status === "Approved");
+    const filteredApproved = datas?.filter((item) => item.status === "Assigned");
     setApprovedDatas(filteredApproved);
-    const filteredRejected = datas?.filter((item) => item.status === "Rejected");
+    const filteredRejected = datas?.filter((item) => item.prjstatus === "completed");
     setRejectedDatas(filteredRejected);
   }, [datas]);
 
@@ -26,7 +26,7 @@ const ProjectList = () => {
     switch (switchId) {
       case 0:
         return (
-          <div className="flex flex-col gap-6 mt-4 ">
+           <div className="flex flex-col gap-6 mt-4 ">
             {data?.length > 0 ? (
               data.map((item) => <ProjectCardComponent item={item} />)
             ) : (
@@ -34,16 +34,16 @@ const ProjectList = () => {
             )}
           </div>
         );
-      case 1:
-        return (
-          <div className="flex flex-col gap-6 mt-4 ">
-            {data?.length > 0 ? (
-              datas.map((item) => <ProjectCardComponent item={item} />)
-            ) : (
-              <h3 className="text-lg font-semibold mb-2">No Projects available</h3>
-            )}
-          </div>
-        );
+      // case 1:
+      //   return (
+      //     <div className="flex flex-col gap-6 mt-4 ">
+      //       {data?.length > 0 ? (
+      //         datas.map((item) => <ProjectCardComponent item={item} />)
+      //       ) : (
+      //         <h3 className="text-lg font-semibold mb-2">No Projects available</h3>
+      //       )}
+      //     </div>
+      //   );
       case 2:
         return (
           <div className="flex flex-col gap-6 mt-4 ">
@@ -85,14 +85,14 @@ const ProjectList = () => {
           <TabButton onClick={() => buttonClick(0)} isActive={buttonId === 0}>
             All project
           </TabButton>
-          <TabButton onClick={() => buttonClick(1)} isActive={buttonId === 1}>
+          {/* <TabButton onClick={() => buttonClick(1)} isActive={buttonId === 1}>
             Applied project
-          </TabButton>
+          </TabButton> */}
           <TabButton onClick={() => buttonClick(2)} isActive={buttonId === 2}>
-            Accepted project
+            Assigned project
           </TabButton>
           <TabButton onClick={() => buttonClick(3)} isActive={buttonId === 3}>
-            Rejected project
+            Completed project
           </TabButton>
         </menu>
         <div>{switchView(buttonId)}</div>
