@@ -1,5 +1,5 @@
 import React from "react";
-import './App.css';
+import './PersonalDetails.css';
 import profile from './profile.jpg';
 
 function PersonalDetails(){
