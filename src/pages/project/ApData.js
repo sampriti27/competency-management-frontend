@@ -1,6 +1,6 @@
 const ApData = [{
     id:1,
-    titl:'competency management system',
+    titl:'Froast gaints ',
     position:'bfdvhvj',
     techstack:'node.js',
     prjstatus:'completed',
@@ -9,7 +9,7 @@ const ApData = [{
 },
 {
     id:2,
-    titl:'competency management system',
+    titl:'ABC retailing company',
     position:'bfdvhvj',
     techstack:'node.js',
     prjstatus:'pending',

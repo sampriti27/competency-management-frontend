@@ -5,7 +5,7 @@ const ProjectCardComponent = ({item}) =>{
 return(
     <div
         key={item.id}
-        className="relative rounded-lg shadow-md p-6 flex-row"
+        className=" rounded-lg shadow-md p-6 flex-row"
       >
         <h3 className="text-lg font-bold mb-2">Project Name: <span className="font-normal">{item.titl}</span></h3>
         <p className="text-gray-900 mb-2"><span className="font-bold">Position:</span> {item.position}</p>

@@ -80,7 +80,7 @@ const ProjectList = () => {
   return (
     <>
       
-      <div className="mx-64 mt-4">
+      <div >
         <menu>
           <TabButton onClick={() => buttonClick(0)} isActive={buttonId === 0}>
             All project

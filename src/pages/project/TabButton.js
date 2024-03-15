@@ -4,7 +4,7 @@ const TabButton = ({ children, onClick, isActive }) => {
   return (
     <button
       className={`text-white rounded px-4 py-2 m-1 transition duration-300 ${
-        isActive ? "bg-sky-950" : "bg-sky-700 hover:bg-sky-900"
+        isActive ? "bg-indigo-950" : "bg-indigo-500 hover:bg-indigo-900"
       }`}
       onClick={onClick}
     >
