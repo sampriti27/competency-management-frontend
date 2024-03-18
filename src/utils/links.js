@@ -10,6 +10,7 @@ const links = [
   { id: 3, text: 'add Project', path: 'add-job', icon: <FaWpforms /> },
   // { id: 4, text: 'profile', path: 'profile', icon: <ImProfile /> },
   { id: 4, text: 'Employee List', path: 'employee-list', icon: <FaAddressBook /> },
+  
 ];
 
 export default links;

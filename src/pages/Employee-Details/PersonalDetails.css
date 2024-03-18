@@ -1,0 +1,50 @@
+.p{
+  color:rgb(61, 61, 61);
+  border-radius: 3px;
+  border-color: black;
+  margin-left: 50px;
+  margin-right: 50px;
+  background-color:#bcccdc;
+  padding-left:20px;
+  padding-right: 20px;
+}
+
+.perDetails,.headEmp,.workDet{
+  color: rgb(0, 0, 0);
+}
+
+.head,.perDetails,.headEmp,.workDet{
+  margin: 0px;
+}
+
+.headerEmp{
+  background-color: #6c63ff;
+  color: white;
+  margin: 0px;
+}
+
+.headEmp{
+  color: white;
+}
+
+.skills,.projects,.id,.fname,.lname,.gender,.contact,.email,.dob{
+  width: 1000px;
+}
+
+.doublecontainer{
+  display: inline;
+  margin-left: 20px;
+}
+
+.image{
+  border: 2px solid #bcccdc;
+  border-radius: 100px;
+  margin: 20px;
+  height: 300px;
+  display: inline-block;
+}
+
+.container{
+  display: flex;
+  margin-top:20px ;
+}
